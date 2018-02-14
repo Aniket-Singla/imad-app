@@ -22,3 +22,9 @@ color:red;
     height: 200px;
 }
 
+.container {
+                font-family: cursive;
+                padding: 40 20;
+                margin: 0 auto;
+                color: seagreen;
+            }
