@@ -4,8 +4,8 @@ var path = require('path');
 
 var app = express();
 app.use(morgan('combined'));
-
-var infoone ={
+var entered={
+    description :{
     title:"Description",
     heading:"Description of My webapp",
     date:14-02-2017,
@@ -15,7 +15,9 @@ var infoone ={
             <p>
                 These are the very good lectures given by Tanmai sir. These lectures provide very good introduction to the web-applications.
             </p>`
+}
 };
+
 function createTemplate(data){
     var title= data.title;
     var heading= data.heading;
@@ -58,8 +60,9 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/description',(req,res)=>{
-    res.send(createTemplate(infoone));
+app.get('/:entered',(req,res)=>{
+    var route = req.params.entered;
+    res.send(createTemplate(entered[route]));
 });
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
