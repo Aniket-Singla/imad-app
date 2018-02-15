@@ -1,4 +1,8 @@
 var img1 = document.getElementById('img');
+var maginval= 0;
+function margin(){
+    return marginval = marginval +10;
+}
 img1.onclick= function(){
-    img.style.marginLeft='100px';
+    img.style.marginLeft=marginLeft+margin()+'px';
 };
