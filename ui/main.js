@@ -1,5 +1,5 @@
 var img1 = document.getElementById('img');
-var maginval= 0;
+var marginval= 0;
 function margin(){
     return marginval = marginval +10;
 }
