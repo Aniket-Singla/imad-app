@@ -4,5 +4,5 @@ function margin(){
     return marginval = marginval +10;
 }
 img1.onclick= function(){
-    img.style.marginLeft=marginLeft+margin()+'px';
+    img.style.marginLeft=margin()+'px';
 };
