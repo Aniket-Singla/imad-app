@@ -1,7 +1,7 @@
 var img1 = document.getElementById('img');
 var marginval= 0;
 function margin(){
-    if (marginval===100){
+    if (marginval===500){
         marginval= 0;
     }
     return marginval = marginval +1;
