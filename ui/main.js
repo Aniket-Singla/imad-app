@@ -13,10 +13,10 @@ img1.onclick= function(){
     var interval = setInterval(moveright,10);
     
 };
-var val= 0;
+var counter= 0;
 var button = document.getElementById('counter');
-var counts = document.getElementById('count');
+var span = document.getElementById('count');
 button.onclick= function(){
-    val = val+1;
-    counts.innerHTML= val.toString();
+    counter = counter+1;
+    span.innerHTML= val.toString();
 };
