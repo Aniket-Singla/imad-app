@@ -18,5 +18,5 @@ var button = document.getElementById('counter');
 var count = document.getElementById('count');
 button.onClick= function(){
     val = val+1;
-    count.innerHtml= val;
+    count.innerHtml= val.toString();
 };
