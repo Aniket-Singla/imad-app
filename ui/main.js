@@ -15,8 +15,8 @@ img1.onclick= function(){
 };
 var val= 0;
 var button = document.getElementById('counter');
-var count = document.getElementById('count');
+var counts = document.getElementById('count');
 button.onclick= function(){
     val = val+1;
-    count.innerHtml= val.toString();
+    counts.innerHtml= val.toString();
 };
