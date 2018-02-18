@@ -4,6 +4,9 @@ var path = require('path');
 
 var app = express();
 app.use(morgan('combined'));
+var counter = 0;
+
+
 var entered={
     description :{
     title:"Description",
@@ -23,7 +26,7 @@ function createTemplate(data){
     var heading= data.heading;
     var date= data.date;
     var content= data.content;
-    
+
     var htmlTemplate=`
     <html>
         <head>
@@ -44,7 +47,7 @@ function createTemplate(data){
                     ${heading}
                 </h1>
                 <br/>Date Edited: 14-02-2018<br/>
-                
+
             </div>
             <div>
                 ${content}
@@ -59,7 +62,17 @@ function createTemplate(data){
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
+  var names= [];
+app.get('/submtname',(req,res)=>{
+  var name = req.query.name;
 
+  names.push(name);
+  res.send(JSON.stringify(names));
+});
+app.get('/counter',(req,res)=>{
+  counter++;
+  res.send(counter.toString());
+});
 app.get('/:entered',(req,res)=>{
     var route = req.params.entered;
     res.send(createTemplate(entered[route]));

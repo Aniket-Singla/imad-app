@@ -11,12 +11,50 @@ function moveright(){
 }
 img1.onclick= function(){
     var interval = setInterval(moveright,10);
-    
+
 };
-var counter= 0;
+//creating a request Object
 var button = document.getElementById('counter');
-var span = document.getElementById('count');
 button.onclick= function(){
-    counter = counter+1;
-    span.innerHTML= val.toString();
+    var request = new XMLHttpRequest();
+    request.onreadystatechange= function(){
+      //take the required action
+      if(request.readyState===XMLHttpRequest.DONE){
+        if(request.status==200){
+          var counter = request.responseText;
+          var span = document.getElementById('count');
+          span.innerHTML = counter.toString();
+        }
+      }
+    }
+
+    //make the request
+    request.open('GET','/counter',true);
+    request.send(null);
+};
+
+var submit = document.getElementById('submit');
+submit.onclick=function(){
+
+  var request = new XMLHttpRequest();
+  request.onreadystatechange= function(){
+    //take the required action
+    if(request.readyState===XMLHttpRequest.DONE){
+      if(request.status==200){
+        var names = request.responseText;
+        names = JSON.parse(names);
+        var list='';
+        for(var i=0;i<names.length;i++){
+          list += '<li>'+names[i]+'</li>';
+        }
+        var listp = document.getElementById('listpr');
+        listp.innerHTML= list;
+      }
+    }
+  }
+  var nameInput = document.getElementById('namein');
+  var name = nameInput.value;
+
+    request.open('GET','/submtname?name='+name,true);
+    request.send(null);
 };
