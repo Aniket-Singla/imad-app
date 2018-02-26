@@ -74,7 +74,7 @@ app.get('/counter',(req,res)=>{
   res.send(counter.toString());
 });
 app.get('/app/:name',(req,res)=>{
-    var route = req.params.entered;
+    var route = req.params.name;
     res.send(createTemplate(entered[route]));
 });
 app.get('/ui/style.css', function (req, res) {
