@@ -73,7 +73,7 @@ app.get('/counter',(req,res)=>{
   counter++;
   res.send(counter.toString());
 });
-app.get('/:entered',(req,res)=>{
+app.get('/app/:name',(req,res)=>{
     var route = req.params.entered;
     res.send(createTemplate(entered[route]));
 });
