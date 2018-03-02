@@ -88,8 +88,8 @@ app.get('/dbtest',(req,res)=>{
         else{
             res.send(JSON.stringify(result));
         }
-    })
-})
+    });
+});
 app.get('/counter',(req,res)=>{
   counter++;
   res.send(counter.toString());
