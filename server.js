@@ -6,13 +6,7 @@ var app = express();
 app.use(morgan('combined'));
 var counter = 0;
 
-var config ={
-    user : 'u1singlaaniket',
-    database:'u1singlaaniket',
-    host:'db.imad.hasura-app.io',
-    port:5432,
-    password:process.env.DB_PASSWORD
-};
+
 
 var entered={
     description :{
