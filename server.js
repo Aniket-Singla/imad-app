@@ -96,7 +96,10 @@ app.get('/counter',(req,res)=>{
 });
 app.get('/app/:name',(req,res)=>{
     var route = req.params.name;
-    res.send(createTemplate(entered[route]));
+    pool.query('SELECT heading,date,content FROM article where title ='+route,(err,result)=>{
+        res.send(JSON.stringify(result.rows));
+    });
+    
 });
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
