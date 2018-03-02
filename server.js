@@ -83,7 +83,7 @@ app.get('/submtname',(req,res)=>{
 app.get('/dbtest',(req,res)=>{
     pool.query('Select * from Users',(err,res)=>{
         if(err){
-            res.status(500).send(err.toString);
+            res.status(500).send(err.toString());
         }
         else{
             res.send(JSON.stringify(result));
