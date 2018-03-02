@@ -14,7 +14,7 @@ var config={
   port: 5432,
 }
 
-var pool = new Pool(config);
+
 var entered={
     description :{
     title:"Description",
