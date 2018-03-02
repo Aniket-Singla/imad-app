@@ -81,15 +81,15 @@ app.get('/submtname',(req,res)=>{
 });
 
 app.get('/dbtest',(req,resp)=>{
-    pool.query('Select * from Users',(err,res)=>{
-        if(err){
-            resp.status(500).send(err.toString());
-        }
-        else{
-            resp.send(JSON.stringify(result));
-        }
-    });
-});
+  pool.query('SELECT * FROM Applications',(err,res)=>{
+    if(err){
+      resp.send(err.toString());
+    }
+    else{
+      resp.send(JSON.stringify(result));
+    }
+  });
+})
 app.get('/counter',(req,res)=>{
   counter++;
   res.send(counter.toString());
