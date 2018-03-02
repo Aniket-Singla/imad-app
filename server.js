@@ -80,13 +80,13 @@ app.get('/submtname',(req,res)=>{
   res.send(JSON.stringify(names));
 });
 
-app.get('/dbtest',(req,res)=>{
+app.get('/dbtest',(req,resp)=>{
     pool.query('Select * from Users',(err,res)=>{
         if(err){
-            res.status(500).send(err.toString());
+            resp.status(500).send(err.toString());
         }
         else{
-            res.send(JSON.stringify(result));
+            resp.send(JSON.stringify(result));
         }
     });
 });
