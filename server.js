@@ -13,7 +13,7 @@ var config ={
     port:5432,
     password:process.env.DB_PASSWORD
 };
-
+var pool = new Pool(config);
 var entered={
     description :{
     title:"Description",
