@@ -17,20 +17,6 @@ var config={
 var pool = new Pool(config);
 
 
-var entered={
-    description :{
-    title:"Description",
-    heading:"Description of My webapp",
-    date:14-02-2017,
-    content:`<p>
-                Hello friends welcome to my webapp. This page is made to describe my webapp. This is the first webapp I made using Hasaura's Console.
-            </p>
-            <p>
-                These are the very good lectures given by Tanmai sir. These lectures provide very good introduction to the web-applications.
-            </p>`
-}
-};
-
 function createTemplate(data){
     var title= data.title;
     var heading= data.heading;
@@ -79,30 +65,35 @@ app.get('/submtname',(req,res)=>{
   names.push(name);
   res.send(JSON.stringify(names));
 });
-
-app.get('/dbtest',(req,resp)=>{
-  pool.query('SELECT * FROM articles',(err,result)=>{
-    if(err){
-      resp.send(err.toString());
-    }
-    else{
-      resp.send(JSON.stringify(result.rows));
-    }
-  });
-})
 app.get('/counter',(req,res)=>{
   counter++;
   res.send(counter.toString());
 });
-app.get('/app/:name',(req,res)=>{
-    var route = req.params.name;
-    pool.query('SELECT heading,date,content FROM articles where title ='+route,(err,result)=>{
+app.get('/dbtest',(req,resp)=>{
+  pool.query('SELECT * FROM users',(err,result)=>{
+    if(err){
+      resp.send(err.toString());
+    }
+    else{
+      resp.send(JSON.stringify(result));
+    }
+  });
+})
+app.get('/app/:articlename',(req,res)=>{
+
+    pool.query("SELECT * FROM articles WHERE title = '"+req.params.articlename+"'",(err,result)=>{//not using '' will generate errors
         if(err){
             res.send(err.toString());
         }
-        res.send(JSON.stringify(result.rows));
-    });
-    
+        else{
+          if(result.rows===0){
+        res.send('result not found');
+      }else{
+        res.send(createTemplate(result.rows[0]));
+      }
+    }
+  });
+
 });
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
