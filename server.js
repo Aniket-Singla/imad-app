@@ -97,6 +97,9 @@ app.get('/counter',(req,res)=>{
 app.get('/app/:name',(req,res)=>{
     var route = req.params.name;
     pool.query('SELECT heading,date,content FROM article where title ='+route,(err,result)=>{
+        if(err){
+            res.send(err.toString());
+        }
         res.send(JSON.stringify(result.rows));
     });
     
