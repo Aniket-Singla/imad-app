@@ -81,7 +81,7 @@ app.get('/submtname',(req,res)=>{
 });
 
 app.get('/dbtest',(req,resp)=>{
-  pool.query('SELECT * FROM articles',(err,res)=>{
+  pool.query('SELECT * FROM articles',(err,result)=>{
     if(err){
       resp.send(err.toString());
     }
