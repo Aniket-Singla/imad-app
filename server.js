@@ -86,7 +86,7 @@ app.get('/dbtest',(req,resp)=>{
       resp.send(err.toString());
     }
     else{
-      resp.send(JSON.stringify(result));
+      resp.send(JSON.stringify(result.rows));
     }
   });
 })
