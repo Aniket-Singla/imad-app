@@ -14,6 +14,8 @@ var config={
   port: 5432,
 }
 
+var pool = new Pool(config);
+
 
 var entered={
     description :{
@@ -77,6 +79,17 @@ app.get('/submtname',(req,res)=>{
   names.push(name);
   res.send(JSON.stringify(names));
 });
+
+app.get('/dbtest',(req,res)=>{
+    pool.query('Select * from Users',(err,res)=>{
+        if(err){
+            res.status(500).send(err.toString);
+        }
+        else{
+            res.send(JSON.stringify(result));
+        }
+    })
+})
 app.get('/counter',(req,res)=>{
   counter++;
   res.send(counter.toString());
