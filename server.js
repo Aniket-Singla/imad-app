@@ -13,7 +13,7 @@ var config={
   database: 'u1singlaaniket',
   password: process.env.DB_PASSWORD,
   port: 5432,
-}
+};
 
 var pool = new Pool(config);
 
@@ -58,7 +58,7 @@ function createTemplate(data){
 function hash(input,salt){
   var result = crypto.pbkdf2Sync(input,salt,1000,512,'sha512')
 
-  return result.toString('hex');
+  return [salt,1000,result.toString('hex')].join('$');
 
 }
 app.get('/', function (req, res) {
