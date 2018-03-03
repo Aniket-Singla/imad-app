@@ -113,7 +113,7 @@ var salt = crypto.randomBytes(128).toString('hex');
 var username = req.body.username;
 var password = req.body.password;
 var dbString = hash(password,salt);
-pool.query('INSERT INTO "user" VALUES ($1,$2)',[username,dbString],(err,result)=>{
+pool.query('INSERT INTO "user" (username,password) VALUES ($1,$2)',[username,dbString],(err,result)=>{
     if(err){
             res.send(err.toString());
         }
