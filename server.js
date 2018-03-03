@@ -118,7 +118,7 @@ pool.query('INSERT INTO "user" VALUES ($1,$2)',[username,dbString],(err,result)=
             res.send(err.toString());
         }
         else{
-          res.send('User created Successfully with username ' + username);
+          res.status(200).send('User created Successfully with username ' + username);
     }
 });
 });
