@@ -2,6 +2,7 @@ var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
 const Pool = require('pg').Pool;
+var crypto = require('crypto');
 var app = express();
 app.use(morgan('combined'));
 var counter = 0;
@@ -54,7 +55,12 @@ function createTemplate(data){
     `;
     return htmlTemplate;
 }
+function hash(input,salt){
+  var result = crypto.pbkdf2Sync(input,salt,1000,512,'sha512')
 
+  return result.toString('hex');
+
+}
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
@@ -93,6 +99,14 @@ app.get('/app/:articlename',(req,res)=>{
       }
     }
   });
+
+});
+app.get('/password/:val',(req,res)=>{
+  var pass = req.params.val;
+  var passhash = hash(pass,'this is random string');
+  res.send(passhash);
+});
+app.get('/createuser',(req,res)=>{
 
 });
 app.get('/ui/style.css', function (req, res) {
