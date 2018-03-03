@@ -109,7 +109,7 @@ app.get('/password/:val',(req,res)=>{
   res.send(passhash);
 });
 app.post('/createuser',(req,res)=>{
-var salt = crypto.randombytes(128).toString('hex');
+var salt = crypto.randomBytes(128).toString('hex');
 var username = req.body.username;
 var password = req.body.password;
 var dbString = hash(password,salt);
