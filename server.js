@@ -108,8 +108,10 @@ app.get('/password/:val',(req,res)=>{
   var passhash = hash(pass,'this is random string');
   res.send(passhash);
 });
-app.get('/createuser',(req,res)=>{
+app.post('/createuser',(req,res)=>{
 var salt = randomBytes(56).toString('hex');
+var username = req.body.username;
+var password = req.body.password;
 var dbString = hash(password,salt);
 pool.query('INSERT INTO "user" VALUES ($1,$2)',[username,dbString],(err,result)=>{
     if(err){
