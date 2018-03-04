@@ -65,28 +65,26 @@ submit.onclick=function(){
 // for logging in
 var username = document.getElementById('username').value;
 var password = document.getElementById('password').value;
-
-.onclick=function(){
+var login = document.getElementById('login');
+login.onclick=function(){
 
   var request = new XMLHttpRequest();
   request.onreadystatechange= function(){
     //take the required action
     if(request.readyState===XMLHttpRequest.DONE){
       if(request.status==200){
-        var names = request.responseText;
-        names = JSON.parse(names);
-        var list='';
-        for(var i=0;i<names.length;i++){
-          list += '<li>'+names[i]+'</li>';
-        }
-        var listp = document.getElementById('listpr');
-        listp.innerHTML= list;
+        console.log('user logged in successfully');
+        alert('congrats! logged in successfully');
+        
+      }
+      else{
+          console.log('error in logging in');
+          alert('username / password incorrect or some internal server error');
       }
     }
   }
-  var nameInput = document.getElementById('namein');
-  var name = nameInput.value;
 
-    request.open('GET','/submtname?name='+name,true);
-    request.send(null);
+    console.log(username);
+    request.open('POST','/login',true);
+    request.send(JSON.stringify({username : ussername, password : password}));
 };
