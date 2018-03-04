@@ -84,7 +84,8 @@ login.onclick=function(){
       }
     }
   }
-
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
     console.log(username);
     request.open('POST','/login',true);
     request.send(JSON.stringify({username : username, password : password}));
