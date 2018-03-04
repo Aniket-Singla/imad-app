@@ -1,3 +1,4 @@
+//moving the image
 var img1 = document.getElementById('img');
 var marginval= 0;
 function margin(){
@@ -13,7 +14,8 @@ img1.onclick= function(){
     var interval = setInterval(moveright,10);
 
 };
-//creating a request Object
+
+//handling the counter variable 
 var button = document.getElementById('counter');
 button.onclick= function(){
     var request = new XMLHttpRequest();
@@ -33,8 +35,38 @@ button.onclick= function(){
     request.send(null);
 };
 
+// for entering names into the array
 var submit = document.getElementById('submit');
 submit.onclick=function(){
+
+  var request = new XMLHttpRequest();
+  request.onreadystatechange= function(){
+    //take the required action
+    if(request.readyState===XMLHttpRequest.DONE){
+      if(request.status==200){
+        var names = request.responseText;
+        names = JSON.parse(names);
+        var list='';
+        for(var i=0;i<names.length;i++){
+          list += '<li>'+names[i]+'</li>';
+        }
+        var listp = document.getElementById('listpr');
+        listp.innerHTML= list;
+      }
+    }
+  }
+  var nameInput = document.getElementById('namein');
+  var name = nameInput.value;
+
+    request.open('GET','/submtname?name='+name,true);
+    request.send(null);
+};
+
+// for logging in
+var username = document.getElementById('username').value;
+var password = document.getElementById('password').value;
+
+.onclick=function(){
 
   var request = new XMLHttpRequest();
   request.onreadystatechange= function(){
