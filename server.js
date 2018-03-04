@@ -163,6 +163,9 @@ app.get('/checklogin',(req,res)=>{
     if(req.session && req.session.auth && req.session.auth.userId){
         res.send('user logged in already');
     }
+    else{
+        res.send('user not logged in');
+    }
 });
 
 app.get('/logout',(req,res)=>{
