@@ -73,14 +73,18 @@ login.onclick=function(){
   request.onreadystatechange= function(){
     //take the required action
     if(request.readyState===XMLHttpRequest.DONE){
-      if(request.status==200){
+      if(request.status===200){
         console.log('user logged in successfully');
         alert('congrats! logged in successfully');
         
       }
-      else{
+      else if(request.status===403){
           console.log('error in logging in');
-          alert('username / password incorrect or some internal server error');
+          alert('username / password incorrect');
+      }
+      else if(request.status===500){
+          console.log('error in logging in');
+          alert(' some internal server error');
       }
     }
   }
