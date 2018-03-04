@@ -158,6 +158,18 @@ app.post('/login', function (req, res) {
    });
 });
 
+app.get('/checklogin',(req,res)=>{
+    if(req.session && req.session.auth && req.session.auth.userId){
+        res.send('user logged in already');
+    }
+});
+
+app.get('/logout',(req,res)=>{
+    
+    delete req.session.auth;
+    res.send('user logged out successfully');
+});
+
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
 });
