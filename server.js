@@ -8,6 +8,11 @@ var session = require('express-session');
 var app = express();
 app.use(morgan('combined'));
 app.use(bodyparser.json());
+app.use(session(
+    {
+        secret : 'this is top secret',
+        cookie : {maxAge : 1000 * 60 * 60* 24 * 30}
+    }));
 var counter = 0;
 
 var config={
@@ -67,6 +72,7 @@ function hash(input,salt){
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
+
   var names= [];
 app.get('/submtname',(req,res)=>{
   var name = req.query.name;
@@ -140,12 +146,8 @@ app.post('/login', function (req, res) {
               var hashedPassword = hash(password, salt); // Creating a hash based on the password submitted and the original salt
               if (hashedPassword === dbString) {
                 
-                // Set the session
-                
-                // set cookie with a session id
-                // internally, on the server side, it maps the session id to an object
-                // { auth: {userId }}
-                
+                req.session.auth = {userId : result.rows[0].id};
+              
                 res.send('credentials correct!');
                 
               } else {
@@ -155,6 +157,7 @@ app.post('/login', function (req, res) {
       }
    });
 });
+
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
 });
