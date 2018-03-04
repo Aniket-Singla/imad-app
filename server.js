@@ -161,7 +161,7 @@ app.post('/login', function (req, res) {
 
 app.get('/checklogin',(req,res)=>{
     if(req.session && req.session.auth && req.session.auth.userId){
-        res.send('user logged in already');
+        res.send('user logged in already as '+ req.session.auth.userId);
     }
     else{
         res.send('user not logged in');
