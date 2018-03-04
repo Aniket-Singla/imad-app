@@ -115,7 +115,7 @@ var password = req.body.password;
 var dbString = hash(password,salt);
 pool.query('INSERT INTO "user" (username,password) VALUES ($1,$2)',[username,dbString],(err,result)=>{
     if(err){
-            res.send(err.toString());
+            res.status(500).send(err.toString());
         }
         else{
           res.status(200).send('User created Successfully with username ' + username);
