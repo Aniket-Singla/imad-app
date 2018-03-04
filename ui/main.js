@@ -87,5 +87,5 @@ login.onclick=function(){
 
     console.log(username);
     request.open('POST','/login',true);
-    request.send(JSON.stringify({username : ussername, password : password}));
+    request.send(JSON.stringify({username : username, password : password}));
 };
