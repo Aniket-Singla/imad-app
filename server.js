@@ -11,8 +11,8 @@ app.use(bodyparser.json());
 app.use(session(
     {
         secret : 'this is top secret',
-        cookie : {maxAge : 1000 * 60 * 60* 24 * 30}
-        saveUninitialized: true;
+        cookie : {maxAge : 1000 * 60 * 60* 24 * 30},
+        saveUninitialized: true
     }));
 var counter = 0;
 
