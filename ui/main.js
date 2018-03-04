@@ -66,6 +66,7 @@ submit.onclick=function(){
 var username = document.getElementById('username').value;
 var password = document.getElementById('password').value;
 var login = document.getElementById('login');
+
 login.onclick=function(){
 
   var request = new XMLHttpRequest();
