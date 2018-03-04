@@ -58,7 +58,7 @@ function createTemplate(data){
     return htmlTemplate;
 }
 function hash(input,salt){
-  var result = crypto.pbkdf2Sync(input,salt,1000,512,'sha512')
+  var result = crypto.pbkdf2Sync(input,salt,1000,512,'sha512');
 
   return [salt,1000,result.toString('hex')].join('$');
 
